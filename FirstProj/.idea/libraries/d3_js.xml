@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="d3.js" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/libs/d3.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/libs/d3.js" />
+      <root url="file://$PROJECT_DIR$/libs/d3.min.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>
