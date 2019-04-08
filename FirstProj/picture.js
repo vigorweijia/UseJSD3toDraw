@@ -48,7 +48,7 @@ function addRectAndCrvLine(dataset, dataline) {
     var width = dataset.length * rectWidth + 50;
     var height = rectHeight;
     var svg = d3.select("body")
-                .append("tspan")
+                //.append("tspan")
                 .append("svg")
                 .attr("height",height)
                 .attr("width",width);
@@ -63,44 +63,39 @@ function addRectAndCrvLine(dataset, dataline) {
         .attr("datam",function (d) {
             return d;
         })
-                  .attr("fill",function(d) {
-                        //return getRectColor(getLinearScale(d));
-                      return getRectColor(d);
-                  })
-                  .attr("x",function (d,i) {
-                        return padding.left + i * rectStep;
-                  })
-                  .attr("y",0)
-                  .attr("width",rectWidth)
-                  .attr("height",rectHeight)
-                  .on("mouseover",function(d){ //鼠标事件监听
-                      var rect = d3.select(this)
-                                   .transition()
-                                   .duration(800)//当鼠标放在矩形上时，矩形变成黄色
-                                   .attr("fill","#00f080");
+        .attr("fill",function(d) {
+            //return getRectColor(getLinearScale(d));
+            return getRectColor(d);
+        })
+        .attr("x",function (d,i) {
+            return padding.left + i * rectStep;
+        })
+        .attr("y",0)
+        .attr("width",rectWidth)
+        .attr("height",rectHeight)
+        .on("mouseover",function(d,i){ //鼠标事件监听
+            var rect = d3.select(this)
+                .transition()
+                .duration(800)//当鼠标放在矩形上时，矩形变成黄色
+                .attr("fill","#00f080");
+            var str = "commits: " + d + "\nmodify: " + dataline[i];
+            tooltip.html(str)     //设置数据显示框
+                .style("left", (d3.event.pageX - 20) + "px")
+                .style("top", (d3.event.pageY + 20) + "px")
+                .style("opacity",0.7);  //显示框透明度
+        })
+        .on("mouseout",function(){    //鼠标事件监听
+            var rect = d3.select(this)
+                .transition()
+                .delay(1000)
+                .duration(1000)//当鼠标移出时，矩形变成原来的颜色
+                .attr("fill",function(d) {
+                    return getRectColor(d);
+                });
 
+            tooltip.style("opacity",0.0);  //将显示框置为透明不可见
 
-                     tooltip.html(d)     //设置数据显示框
-                          .style("left", (d3.event.pageX - 20) + "px")
-                          .style("top", (d3.event.pageY + 20) + "px")
-                          .style("opacity",0.7);  //显示框透明度
-
-
-
-
-                  })
-                  .on("mouseout",function(){    //鼠标事件监听
-                        var rect = d3.select(this)
-                                   .transition()
-                                   .delay(1000)
-                                   .duration(1000)//当鼠标移出时，矩形变成原来的颜色
-                        .attr("fill",function(d) {
-                            return getRectColor(d);
-                        });
-
-                      tooltip.style("opacity",0.0);  //将显示框置为透明不可见
-
-                  });
+        });
 
     //绘制折线图，和d3 v3版本不同
     var oneLine = d3.line()
