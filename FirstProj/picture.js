@@ -7,9 +7,9 @@ function getRectColor(scale) {
     else if(scale > 50 && scale <= 75) color = "#999999";
     else if(scale > 75 && scale <= 100) color = "#777777";
     else if(scale > 100 && scale <= 125) color = "#555555";
-    else if(scale > 125 && scale <= 150) color = "#454545";
-    else if(scale > 150 && scale <= 175) color = "#353535";
-    else color = "#111111";
+    else if(scale > 125 && scale <= 150) color = "#333333";
+    else if(scale > 150 && scale <= 175) color = "#121212";
+    else color = "#010101";
     return color;
 }
 
@@ -26,20 +26,36 @@ function getLinearScale(d) {
 
 
 //为设置折线点颜色的函数
-function getDotAColor(d) {
+function getDotAColor(scale) {
     color = "";
-    if(d == 0) color = "#ffffff";
-    else if(d > 0 && d <= 20) color = "#ffd0d0";
-    else if(d > 20 && d <= 40) color = "#ee8080";
-    else if(d > 40 && d <= 60) color = "#ff8080";
-    else if(d > 40 && d <= 60) color = "#cc0000";
-    else if(d > 60 && d <= 80) color = "#aa0000";
-    else color = "#880000";
+    if(scale == 0) color = "#ff66ff";
+    else if(scale > 0 && scale <= 10) color = "#ff33ff";
+    else if(scale > 10 && scale <= 20) color = "#ff00ff";
+    else if(scale > 20 && scale <= 30) color = "#ff00cc";
+    else if(scale > 30 && scale <= 40) color = "#ff0099";
+    else if(scale > 40 && scale <= 50) color = "#ff0066";
+    else if(scale > 50 && scale <= 60) color = "#ff0033";
+    else if(scale > 60 && scale <= 70) color = "#ff0000";
+    else if(scale > 70 && scale <= 70) color = "#aa0000"
+    else if(scale > 80 && scale <= 70) color = "#550000"
+    else color = "#330000";
     return color;
 }
 
-function getDotDColor(d) {
-    return "#0000ff";
+function getDotDColor(scale) {
+    color = "";
+    if(scale == 0) color = "#00ffff";
+    else if(scale > 0 && scale <= 10) color = "#00ccff";
+    else if(scale > 10 && scale <= 20) color = "#0099ff";
+    else if(scale > 20 && scale <= 30) color = "#0066ff";
+    else if(scale > 30 && scale <= 40) color = "#0033ff";
+    else if(scale > 40 && scale <= 50) color = "#0000ff";
+    else if(scale > 50 && scale <= 60) color = "#0000cc";
+    else if(scale > 60 && scale <= 70) color = "#000099";
+    else if(scale > 70 && scale <= 70) color = "#000077"
+    else if(scale > 80 && scale <= 70) color = "#000055"
+    else color = "#000033";
+    return color;
 }
 
 padding = {top: 20, right: 20, bottom: 20, left: 20};
@@ -81,7 +97,7 @@ function addRectAndCrvLine(dataset, datalineA, datalineD) {
             var rect = d3.select(this)
                 .transition()
                 .duration(800)//当鼠标放在矩形上时，矩形变成黄色
-                .attr("fill","#00f080");
+                .attr("fill","#ccffcc");
             var str = "commits: " + d + "\nAdd: " + datalineA[i] + "\nDelete: " + datalineD[i];
             tooltip.html(str)     //设置数据显示框
                 .style("left", (d3.event.pageX - 20) + "px")
@@ -111,7 +127,7 @@ function addRectAndCrvLine(dataset, datalineA, datalineD) {
         })
         .curve(d3.curveLinear);
     //需要注意把填充设置为none，然后设置描边宽度
-    svg.append("path").attr("class","line").attr("d",oneLineA(datalineA)).attr("fill","none").attr("stroke","#008000").attr("stroke-width","1.5px");
+    svg.append("path").attr("class","line").attr("d",oneLineA(datalineA)).attr("fill","none").attr("stroke","#009966").attr("stroke-width","1.5px");
 
     var dotA = svg.selectAll("circle")
                  .data(datalineA).enter()
@@ -136,7 +152,7 @@ function addRectAndCrvLine(dataset, datalineA, datalineD) {
         })
         .curve(d3.curveLinear);
     //需要注意把填充设置为none，然后设置描边宽度
-    svg.append("path").attr("class","line").attr("d",oneLineD(datalineD)).attr("fill","none").attr("stroke","#f08000").attr("stroke-width","1.5px");
+    svg.append("path").attr("class","line").attr("d",oneLineD(datalineD)).attr("fill","none").attr("stroke","#ff9966").attr("stroke-width","1.5px");
 
     var dotD = svg.selectAll("polygon")
         .data(datalineD).enter()
