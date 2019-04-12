@@ -23,6 +23,58 @@ function getcolor(d) {
     else if(d > 95) color = "#000000";
     return color;
 }
+function getcolor2(d) {
+    color = "";
+    if(d == 0) color = "#000099";
+    else if(d > 0 && d <= 5) color = "#0000cc";
+    else if(d > 5 && d <= 10) color = "#0000ff";
+    else if(d > 10 && d <= 15) color = "#0044ff";
+    else if(d > 15 && d <= 20) color = "#0088ff";
+    else if(d > 20 && d <= 25) color = "#00bbff";
+    else if(d > 25 && d <= 30) color = "#00ffff";
+    else if(d > 30 && d <= 35) color = "#00ffaa";
+    else if(d > 35 && d <= 40) color = "#00ff55";
+    else if(d > 40 && d <= 45) color = "#00ff00";
+    else if(d > 45 && d <= 50) color = "#44ff00";
+    else if(d > 50 && d <= 55) color = "#88ff00";
+    else if(d > 55 && d <= 60) color = "#ccff00";
+    else if(d > 60 && d <= 65) color = "#ffff00";
+    else if(d > 65 && d <= 70) color = "#ffcc00";
+    else if(d > 70 && d <= 75) color = "#ff9900";
+    else if(d > 75 && d <= 80) color = "#ff6600";
+    else if(d > 80 && d <= 85) color = "#ff3300";
+    else if(d > 85 && d <= 90) color = "#ff0000";
+    else if(d > 90 && d <= 95) color = "#cc0000";
+    else if(d > 95) color = "#990000";
+    return color;
+}
+
+function getcolor3(d) {
+    color = "";
+    if(d == 0) color = "#550055";
+    else if(d > 0 && d <= 5) color = "#440066";
+    else if(d > 5 && d <= 10) color = "#220099";
+    else if(d > 10 && d <= 15) color = "#0000cc";
+    else if(d > 15 && d <= 20) color = "#0000ff";
+    else if(d > 20 && d <= 25) color = "#0055ff";
+    else if(d > 25 && d <= 30) color = "#00aaff";
+    else if(d > 30 && d <= 35) color = "#00ffff";
+    else if(d > 35 && d <= 40) color = "#00ffaa";
+    else if(d > 40 && d <= 45) color = "#00ff55";
+    else if(d > 45 && d <= 50) color = "#00ff00";
+    else if(d > 50 && d <= 55) color = "#55ff00";
+    else if(d > 55 && d <= 60) color = "#aaff00";
+    else if(d > 60 && d <= 65) color = "#ffff00";
+    else if(d > 65 && d <= 70) color = "#ffcc00";
+    else if(d > 70 && d <= 75) color = "#ff9900";
+    else if(d > 75 && d <= 80) color = "#ff6600";
+    else if(d > 80 && d <= 85) color = "#ff3300";
+    else if(d > 85 && d <= 90) color = "#ff0000";
+    else if(d > 90 && d <= 95) color = "#cc0000";
+    else if(d > 95) color = "#990000";
+    return color;
+}
+
 rectWidth = 7;
 rectStep = 7;
 rectHeight = 100;
@@ -38,7 +90,7 @@ function addRect(dataset) {
         })
         .attr("fill",function (d) {
             console.log(d);
-            return getcolor(d);
+            return getcolor2(d);
         })
         .attr("x",function (d,i) {
             return left + i*rectStep;
@@ -77,6 +129,13 @@ function FileInfo(filename) {
     }
 }
 
+/*function addAxis() {
+    var width = 168*rectWidth + 50;
+    var
+}*/
+
 FileInfo("d3_week_data.txt");
 FileInfo("rxjava_week_data.txt");
 FileInfo("tensorflow_week_data.txt");
+FileInfo("linux_week_data.txt");
+FileInfo("ice_week_data.txt");
