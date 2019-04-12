@@ -64,7 +64,7 @@ rectWidth = 8;
 rectHeight = 100;
 
 //画矩形及折线的函数
-function addRectAndCrvLine(dataset, datalineA, datalineD) {
+function addRectAndCrvLine(dataset, datalineA, datalineD,rank) {
     var width = dataset.length * rectWidth + 50;
     var height = rectHeight;
     var svg = d3.select("body")
@@ -98,7 +98,7 @@ function addRectAndCrvLine(dataset, datalineA, datalineD) {
                 .transition()
                 .duration(800)//当鼠标放在矩形上时，矩形变成黄色
                 .attr("fill","#ccffcc");
-            var str = "commits: " + d + "\nAdd: " + datalineA[i] + "\nDelete: " + datalineD[i];
+            var str = "commits: " + d + "\nAdd: " + datalineA[i] + "\nDelete: " + datalineD[i] + "\nrank: " + rank;
             tooltip.html(str)     //设置数据显示框
                 .style("left", (d3.event.pageX - 20) + "px")
                 .style("top", (d3.event.pageY + 20) + "px")
@@ -182,7 +182,7 @@ function ReadFile(data) {
     //box.innerText = data;
     return ret;
 }
-function FileInfo(filename) {
+function FileInfo(filename,rank) {
     var xhr = new XMLHttpRequest();
     xhr.onload = function () {
         var s = ReadFile(xhr.responseText);
@@ -196,7 +196,7 @@ function FileInfo(filename) {
             datalineA.push(parseInt(information[2]));
             datalineD.push(parseInt(information[3]));
         }
-        addRectAndCrvLine(dataset,datalineA,datalineD);
+        addRectAndCrvLine(dataset,datalineA,datalineD,rank);
     };
     try {
         xhr.open("get", "data/"+filename, true);
@@ -206,16 +206,16 @@ function FileInfo(filename) {
     }
 }
 
-FileInfo("p0.txt");
-FileInfo("p1.txt");
-FileInfo("p2.txt");
-FileInfo("p3.txt");
-FileInfo("p4.txt");
-FileInfo("p5.txt");
-FileInfo("p6.txt");
-FileInfo("p7.txt");
-FileInfo("p8.txt");
-FileInfo("p9.txt");
+FileInfo("p0.txt",1);
+FileInfo("p1.txt",2);
+FileInfo("p2.txt",3);
+FileInfo("p3.txt",4);
+FileInfo("p4.txt",5);
+FileInfo("p5.txt",6);
+FileInfo("p6.txt",7);
+FileInfo("p7.txt",8);
+FileInfo("p8.txt",9);
+FileInfo("p9.txt",10);
 
 /*for(i = 0; i < 10; i++) {
     dataset = [(i*67+3*i)%200];
