@@ -206,15 +206,29 @@ function FileInfo(filename,rank) {
     }
 }
 
+function mysleep(t) {
+    var sec = t*10000000;
+    for(let i = 0; i < sec; i++);
+}
+
 FileInfo("p0.txt",1);
+mysleep(1);
 FileInfo("p1.txt",2);
+mysleep(1);
 FileInfo("p2.txt",3);
+mysleep(1);
 FileInfo("p3.txt",4);
+mysleep(1);
 FileInfo("p4.txt",5);
+mysleep(1);
 FileInfo("p5.txt",6);
+mysleep(1);
 FileInfo("p6.txt",7);
+mysleep(1);
 FileInfo("p7.txt",8);
+mysleep(1);
 FileInfo("p8.txt",9);
+mysleep(1);
 FileInfo("p9.txt",10);
 
 /*for(i = 0; i < 10; i++) {
