@@ -89,7 +89,6 @@ function addRect(dataset) {
             return d;
         })
         .attr("fill",function (d) {
-            console.log(d);
             return getcolor2(d);
         })
         .attr("x",function (d,i) {
@@ -105,7 +104,6 @@ function ReadFile(data) {
     var str = data.trim().split("\n");
     for(let i = 0; i < str.length; i++) {
         ret.push(str[i]);
-        //console.log(str[i]);
     }
     return ret;
 }
@@ -117,9 +115,9 @@ function FileInfo(filename) {
         var dataset = [];
         for(let i = 0; i < 168; i++) {
             dataset.push(parseInt(s[i]));
-            //console.log(s[i]);
         }
         addRect(dataset);
+        console.log(filename);
     }
     try {
         xhr.open("get","data/"+filename,true);
